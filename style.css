@@ -131,7 +131,8 @@ button:hover {
     color: rgb(210, 203, 203);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
+    text-align: center;
 }
 
 .green1,
