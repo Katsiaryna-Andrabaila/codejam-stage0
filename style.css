@@ -21,6 +21,12 @@ body {
 
 .ancient {
     width: 70%;
+    border: 2px solid rgba(210, 203, 203, 0);
+}
+
+.card-active {
+    border: 2px solid rgb(190, 25, 25);
+    box-shadow: 1px 1px 2px rgb(190, 25, 25), 0 0 1em rgb(190, 25, 25);
 }
 
 .game {
@@ -38,12 +44,16 @@ body {
     align-items: center;
 }
 
+.difficulty.visible {
+    visibility: visible;
+}
+
 .header {
     color: rgb(190, 25, 25);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 24px;
     font-weight: bold;
-    text-shadow: 1px 1px 2px white, 0 0 1em rgb(190, 25, 25);
+    text-shadow: 1px 1px 2px rgb(255, 255, 255), 0 0 1em rgb(190, 25, 25);
     margin-top: 5px;
 }
 
@@ -64,7 +74,7 @@ button:hover {
     transition: all 1s ease;
 }
 
-button:visited {
+.visited {
     background-color: rgb(190, 25, 25);
     box-shadow: inset 3px 4px 5px rgb(210, 203, 203);
 }
@@ -81,11 +91,19 @@ button:visited {
     margin-top: 50px;
 }
 
+.mix-cards.visible {
+    visibility: visible;
+}
+
 .tracker {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+}
+
+.tracker.visible {
+    visibility: visible;
 }
 
 .stage {
@@ -140,7 +158,11 @@ button:visited {
     width: 100%;
 }
 
+.deck.visible {
+    visibility: visible;
+}
+
 .shirt,
-.active-card {
+.shown-card {
     width: 30%;
 }
