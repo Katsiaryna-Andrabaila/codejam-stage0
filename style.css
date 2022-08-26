@@ -5,8 +5,7 @@ body {
     background-repeat: no-repeat;
     height: 100vh;
     display: flex;
-    justify-content: space-between;
-    margin: auto 20px auto;
+    margin: 0 20px auto;
 }
 
 .left-cards-group,
@@ -21,14 +20,16 @@ body {
 }
 
 .ancient {
-    width: 60%;
+    width: 70%;
 }
 
 .game {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 50%;
+    align-items: center;
+    width: 60%;
+    visibility: hidden;
 }
 
 .difficulty {
@@ -37,12 +38,109 @@ body {
     align-items: center;
 }
 
+.header {
+    color: rgb(190, 25, 25);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px white, 0 0 1em rgb(190, 25, 25);
+    margin-top: 5px;
+}
+
+button {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: inset 3px 4px 5px rgb(190, 25, 25);
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 0 10px 0 10px;
+}
+
+button:hover {
+    background-color: rgb(190, 25, 25);
+    box-shadow: inset 3px 4px 5px rgb(210, 203, 203);
+    transition: all 1s ease;
+}
+
+button:visited {
+    background-color: rgb(190, 25, 25);
+    box-shadow: inset 3px 4px 5px rgb(210, 203, 203);
+}
+
 .levels {
     display: flex;
     justify-content: space-around;
     width: 100%;
 }
 
-.level {
+.mix-cards {
+    font-size: 14px;
     width: 25%;
+    margin-top: 50px;
+}
+
+.tracker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.stage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.stage-name {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: inset 3px 3px 3px 3px rgb(190, 25, 25); 
+    color: rgb(210, 203, 203);
+    width: 25%;
+    text-align: right;
+}
+
+.pointer {
+    width: 40px;
+    height: 20px;
+    border: 1px rgb(190, 25, 25);
+    margin: 0 10px 0;
+    color: rgb(210, 203, 203);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.green1,
+.green2,
+.green3 {
+    background-color: rgb(40, 85, 40);
+}
+
+.brown1,
+.brown2,
+.brown3 {
+    background-color: rgba(221, 180, 33, 0.763);
+}
+
+.blue1,
+.blue2,
+.blue3 {
+    background-color: rgb(86, 86, 188);
+}
+
+.deck {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.shirt,
+.active-card {
+    width: 30%;
 }
