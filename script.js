@@ -55,7 +55,6 @@ function getAncientSet() {
             }
         }
     }
-    return ancientSet;
 }
 
 function setLevel() {
@@ -99,68 +98,169 @@ function setVisitedMixButton() {
 
 setVisitedMixButton();
 
+
+//************************************************************* NORMAL DIFFICULTY DECK ********************************************************/
+
 function getMixedDeck() {
-    console.log(blueCards);
-    console.log(brownCards);
-    console.log(greenCards);
+    let finishSet = [];
 
-    let resultSet = [];
-
-    resultSet = getGreenSet().concat(getBrownSet(), getBlueSet());
-    console.log(resultSet);
-    shuffleCards(resultSet);
-    console.log(shuffleCards(resultSet));
+    finishSet = getFirstSet().concat(getSecondSet(), getThirdSet());
+    console.log(finishSet);
 }
 
-function getGreenSet() {
-    const ancientSet = getAncientSet();
-    console.log(ancientSet);
-    let greenSet = [];
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-    greenSet.push(ancientSet[0]);
-    greenSet.push(ancientSet[3]);
-    greenSet.push(ancientSet[6]);
+function getFirstSet() {
+    let resultFirstSet = [];
+
+    resultFirstSet = getFirstGreenSet().concat(getFirstBrownSet(), getFirstBlueSet());
+    console.log(resultFirstSet);
+}
+
+function getFirstGreenSet() {
+    const pointers = document.querySelectorAll('.pointer');
+    let firstGreenSet = [];
+    let num = Number(pointers[0].innerHTML);
+    let count = 0;
+    let greenSet = getNormalGreenSet();
+
+    if (num > 0) {
+        while (count < num) {
+            firstGreenSet.push(greenSet[getRandomIntInclusive(0, greenSet.length - 1)]);
+            count++;
+        }
+    } else {
+        firstGreenSet = [];
+    }
+    return firstGreenSet;
+}
+
+function getFirstBrownSet() {
+    const pointers = document.querySelectorAll('.pointer');
+    let firstBrownSet = [];
+    let num = Number(pointers[1].innerHTML);
+    let count = 0;
+    let brownSet = getNormalBrownSet();
+
+    if (num > 0) {
+        while (count < num) {
+            firstBrownSet.push(brownSet[getRandomIntInclusive(0, brownSet.length - 1)]);
+            count++;
+        }
+    } else {
+        firstBrownSet = [];
+    }
+    return firstBrownSet;
+}
+
+function getFirstBlueSet() {
+    const pointers = document.querySelectorAll('.pointer');
+    let firstBlueSet = [];
+    let num = Number(pointers[2].innerHTML);
+    let count = 0;
+    let blueSet = getNormalBlueSet();
+
+    if (num > 0) {
+        while (count < num) {
+            firstBlueSet.push(blueSet[getRandomIntInclusive(0, blueSet.length - 1)]);
+            count++;
+        }
+    } else {
+        firstBlueSet = [];
+    }
+    return firstBlueSet;
+}
+
+function getSecondSet() {
+    let resultSecondSet = [];
+
+    resultSecondSet = getSecondGreenSet().concat(getSecondBrownSet(), getSecondBlueSet());
+    console.log(resultSecondSet);
+}
+
+function getSecondGreenSet() {
+    const pointers = document.querySelectorAll('.pointer');
+    let secondGreenSet = [];
+    let num = Number(pointers[3].innerHTML);
+    let count = 0;
+    let greenSet = getNormalGreenSet();
+
+    if (num > 0) {
+        while (count < num) {
+            secondGreenSet.push(greenSet[getRandomIntInclusive(0, greenSet.length - 1)]);
+            count++;
+        }
+    } else {
+        secondGreenSet = [];
+    }
+    return secondGreenSet;
+}
+
+function getThirdSet() {
+    let resultThirdSet = [];
+
+    resultThirdSet = getThirdGreenSet().concat(getThirdBrownSet(), getThirdBlueSet());
+    console.log(resultThirdSet);
+}
+
+function getNormalGreenSet() {
+    const pointers = document.querySelectorAll('.pointer');
+    
+    let greenSet = [];
+    let sum = Number(pointers[0].innerHTML) + Number(pointers[3].innerHTML) + Number(pointers[6].innerHTML);
+    console.log(sum);
+
+    let count = 0;
+    while (count < sum) {
+        let random = getRandomIntInclusive(0, greenCards.length - 1);
+        greenSet.push(greenCards[random]);
+        greenCards.splice(random, 1);
+        count++;
+    }
 
     console.log(greenSet);
     return greenSet;
 }
 
-function getBrownSet() {
-    const ancientSet = getAncientSet();
-    console.log(ancientSet);
+function getNormalBrownSet() {
+    const pointers = document.querySelectorAll('.pointer');
+    
     let brownSet = [];
+    let sum = Number(pointers[1].innerHTML) + Number(pointers[4].innerHTML) + Number(pointers[7].innerHTML);
+    console.log(sum);
 
-    brownSet.push(ancientSet[1]);
-    brownSet.push(ancientSet[4]);
-    brownSet.push(ancientSet[7]);
+    let count = 0;
+    while (count < sum) {
+        let random = getRandomIntInclusive(0, brownCards.length - 1);
+        brownSet.push(brownCards[random]);
+        brownCards.splice(random, 1);
+        count++;
+    }
 
     console.log(brownSet);
     return brownSet;
 }
 
-function getBlueSet() {
-    const ancientSet = getAncientSet();
-    console.log(ancientSet);
+function getNormalBlueSet() {
+    const pointers = document.querySelectorAll('.pointer');
+    
     let blueSet = [];
+    let sum = Number(pointers[2].innerHTML) + Number(pointers[5].innerHTML) + Number(pointers[8].innerHTML);
+    console.log(sum);
 
-    blueSet.push(ancientSet[2]);
-    blueSet.push(ancientSet[5]);
-    blueSet.push(ancientSet[8]);
+    let count = 0;
+    while (count < sum) {
+        let random = getRandomIntInclusive(0, blueCards.length - 1);
+        blueSet.push(blueCards[random]);
+        blueCards.splice(random, 1);
+        count++;
+    }
 
     console.log(blueSet);
     return blueSet;
 }
 
-function countCards(array) {
-    array.reduce((acc, num) => acc + num, 0);
-}
-
-function shuffleCards(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-
-
-getMixedDeck();
