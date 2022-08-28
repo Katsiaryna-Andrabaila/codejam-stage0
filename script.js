@@ -164,9 +164,6 @@ function getFirstSet() {
         let j = Math.floor(Math.random() * (i + 1));
         [firstSet[i], firstSet[j]] = [firstSet[j], firstSet[i]];
     }
-    
-    console.log(firstSet);
-
 }
 
 function getSecondSet() {
@@ -196,8 +193,6 @@ function getSecondSet() {
         let j = Math.floor(Math.random() * (i + 1));
         [secondSet[i], secondSet[j]] = [secondSet[j], secondSet[i]];
     }
-    
-    console.log(secondSet);
 }
 
 function getThirdSet() {
@@ -227,8 +222,6 @@ function getThirdSet() {
         let j = Math.floor(Math.random() * (i + 1));
         [thirdSet[i], thirdSet[j]] = [thirdSet[j], thirdSet[i]];
     }
-    
-    console.log(thirdSet);
 }
 
 function getNormalGreenSet() {
@@ -248,8 +241,6 @@ function getNormalGreenSet() {
         greenCardsArr.splice(random, 1);
         count++;
     }
-
-    console.log(greenSet);
     return greenSet;
 }
 
@@ -270,8 +261,6 @@ function getNormalBrownSet() {
         brownCardsArr.splice(random, 1);
         count++;
     }
-
-    console.log(brownSet);
     return brownSet;
 }
 
@@ -292,8 +281,6 @@ function getNormalBlueSet() {
         blueCardsArr.splice(random, 1);
         count++;
     }
-
-    console.log(blueSet);
     return blueSet;
 }
 
@@ -310,7 +297,7 @@ function getShownCard() {
     const shownCard = document.querySelector('.shown-card');
     const pointers = document.querySelectorAll('.pointer');
 
-    console.log(finishSet.length);
+    console.log(finishSet[0].color);
 
         switch (stage) {
             case 1:
