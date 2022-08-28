@@ -5,10 +5,13 @@ import greenCards from './greenCards.js';
 
 let ancient = '';
 let level = '';
-
-
-const shirt = document.querySelector('.shirt');
-const shownCard = document.querySelector('.shown-card');
+let greenSet = [];
+let brownSet = [];
+let blueSet = [];
+let firstSet = [];
+let secondSet = [];
+let thirdSet = [];
+let finishSet = [];
 
 function setAncients() {
     const ancients = document.querySelectorAll('.ancient'); 
@@ -102,9 +105,21 @@ setVisitedMixButton();
 //************************************************************* NORMAL DIFFICULTY DECK ********************************************************/
 
 function getMixedDeck() {
-    let finishSet = [];
+    finishSet = [];
 
-    finishSet = getFirstSet().concat(getSecondSet(), getThirdSet());
+/*     finishSet = getFirstSet().concat(getSecondSet(), getThirdSet());
+    console.log(finishSet);
+    return finishSet; */
+/*     getFirstSet();
+    getSecondSet();
+    getThirdSet(); */
+    getNormalGreenSet();
+    getNormalBrownSet();
+    getNormalBlueSet();
+    getFirstSet();
+    getSecondSet();
+    getThirdSet();
+    finishSet = firstSet.concat(secondSet, thirdSet);
     console.log(finishSet);
 }
 
@@ -115,104 +130,104 @@ function getRandomIntInclusive(min, max) {
 }
 
 function getFirstSet() {
-    let resultFirstSet = [];
-
-    resultFirstSet = getFirstGreenSet().concat(getFirstBrownSet(), getFirstBlueSet());
-    console.log(resultFirstSet);
-}
-
-function getFirstGreenSet() {
+    firstSet = [];
     const pointers = document.querySelectorAll('.pointer');
-    let firstGreenSet = [];
-    let num = Number(pointers[0].innerHTML);
-    let count = 0;
-    let greenSet = getNormalGreenSet();
 
-    if (num > 0) {
-        while (count < num) {
-            firstGreenSet.push(greenSet[getRandomIntInclusive(0, greenSet.length - 1)]);
-            count++;
-        }
-    } else {
-        firstGreenSet = [];
+    let greenNum = Number(pointers[0].innerHTML);
+    let brownNum = Number(pointers[1].innerHTML);
+    let blueNum = Number(pointers[2].innerHTML);
+
+    for (let i = 0; i < greenNum; i++) {
+        firstSet.push(greenSet[0]);
+        greenSet.splice(0, 1);
     }
-    return firstGreenSet;
-}
 
-function getFirstBrownSet() {
-    const pointers = document.querySelectorAll('.pointer');
-    let firstBrownSet = [];
-    let num = Number(pointers[1].innerHTML);
-    let count = 0;
-    let brownSet = getNormalBrownSet();
-
-    if (num > 0) {
-        while (count < num) {
-            firstBrownSet.push(brownSet[getRandomIntInclusive(0, brownSet.length - 1)]);
-            count++;
-        }
-    } else {
-        firstBrownSet = [];
+    for (let i = 0; i < brownNum; i++) {
+        firstSet.push(brownSet[0]);
+        brownSet.splice(0, 1);
     }
-    return firstBrownSet;
-}
 
-function getFirstBlueSet() {
-    const pointers = document.querySelectorAll('.pointer');
-    let firstBlueSet = [];
-    let num = Number(pointers[2].innerHTML);
-    let count = 0;
-    let blueSet = getNormalBlueSet();
-
-    if (num > 0) {
-        while (count < num) {
-            firstBlueSet.push(blueSet[getRandomIntInclusive(0, blueSet.length - 1)]);
-            count++;
-        }
-    } else {
-        firstBlueSet = [];
+    for (let i = 0; i < blueNum; i++) {
+        firstSet.push(blueSet[0]);
+        blueSet.splice(0, 1);
     }
-    return firstBlueSet;
+
+    for (let i = firstSet.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [firstSet[i], firstSet[j]] = [firstSet[j], firstSet[i]];
+    }
+    
+    console.log(firstSet);
+
 }
 
 function getSecondSet() {
-    let resultSecondSet = [];
-
-    resultSecondSet = getSecondGreenSet().concat(getSecondBrownSet(), getSecondBlueSet());
-    console.log(resultSecondSet);
-}
-
-function getSecondGreenSet() {
+    secondSet = [];
     const pointers = document.querySelectorAll('.pointer');
-    let secondGreenSet = [];
-    let num = Number(pointers[3].innerHTML);
-    let count = 0;
-    let greenSet = getNormalGreenSet();
 
-    if (num > 0) {
-        while (count < num) {
-            secondGreenSet.push(greenSet[getRandomIntInclusive(0, greenSet.length - 1)]);
-            count++;
-        }
-    } else {
-        secondGreenSet = [];
+    let greenNum = Number(pointers[3].innerHTML);
+    let brownNum = Number(pointers[4].innerHTML);
+    let blueNum = Number(pointers[5].innerHTML);
+
+    for (let i = 0; i < greenNum; i++) {
+        secondSet.push(greenSet[0]);
+        greenSet.splice(0, 1);
     }
-    return secondGreenSet;
+
+    for (let i = 0; i < brownNum; i++) {
+        secondSet.push(brownSet[0]);
+        brownSet.splice(0, 1);
+    }
+
+    for (let i = 0; i < blueNum; i++) {
+        secondSet.push(blueSet[0]);
+        blueSet.splice(0, 1);
+    }
+
+    for (let i = secondSet.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [secondSet[i], secondSet[j]] = [secondSet[j], secondSet[i]];
+    }
+    
+    console.log(secondSet);
 }
 
 function getThirdSet() {
-    let resultThirdSet = [];
+    thirdSet = [];
+    const pointers = document.querySelectorAll('.pointer');
 
-    resultThirdSet = getThirdGreenSet().concat(getThirdBrownSet(), getThirdBlueSet());
-    console.log(resultThirdSet);
+    let greenNum = Number(pointers[6].innerHTML);
+    let brownNum = Number(pointers[7].innerHTML);
+    let blueNum = Number(pointers[8].innerHTML);
+
+    for (let i = 0; i < greenNum; i++) {
+        thirdSet.push(greenSet[0]);
+        greenSet.splice(0, 1);
+    }
+
+    for (let i = 0; i < brownNum; i++) {
+        thirdSet.push(brownSet[0]);
+        brownSet.splice(0, 1);
+    }
+
+    for (let i = 0; i < blueNum; i++) {
+        thirdSet.push(blueSet[0]);
+        blueSet.splice(0, 1);
+    }
+
+    for (let i = thirdSet.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [thirdSet[i], thirdSet[j]] = [thirdSet[j], thirdSet[i]];
+    }
+    
+    console.log(thirdSet);
 }
 
 function getNormalGreenSet() {
     const pointers = document.querySelectorAll('.pointer');
     
-    let greenSet = [];
+
     let sum = Number(pointers[0].innerHTML) + Number(pointers[3].innerHTML) + Number(pointers[6].innerHTML);
-    console.log(sum);
 
     let count = 0;
     while (count < sum) {
@@ -223,15 +238,13 @@ function getNormalGreenSet() {
     }
 
     console.log(greenSet);
-    return greenSet;
+
 }
 
 function getNormalBrownSet() {
     const pointers = document.querySelectorAll('.pointer');
-    
-    let brownSet = [];
+  
     let sum = Number(pointers[1].innerHTML) + Number(pointers[4].innerHTML) + Number(pointers[7].innerHTML);
-    console.log(sum);
 
     let count = 0;
     while (count < sum) {
@@ -248,9 +261,8 @@ function getNormalBrownSet() {
 function getNormalBlueSet() {
     const pointers = document.querySelectorAll('.pointer');
     
-    let blueSet = [];
+
     let sum = Number(pointers[2].innerHTML) + Number(pointers[5].innerHTML) + Number(pointers[8].innerHTML);
-    console.log(sum);
 
     let count = 0;
     while (count < sum) {
@@ -262,5 +274,25 @@ function getNormalBlueSet() {
 
     console.log(blueSet);
     return blueSet;
+}
+
+function showCard() {
+    const shirt = document.querySelector('.shirt');
+    
+    shirt.addEventListener('click', getShownCard);
+}
+
+showCard();
+
+function getShownCard() {
+    const shownCard = document.querySelector('.shown-card');
+
+    shownCard.src = finishSet[0].cardFace;
+    finishSet.splice(0, 1);
+    console.log(finishSet.length);
+
+    if (finishSet.length === 0) {
+        shownCard.src = "";
+    }
 }
 
