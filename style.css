@@ -167,3 +167,7 @@ button:hover {
 .shown-card {
     width: 30%;
 }
+
+.shirt.hidden {
+    visibility: hidden;
+}

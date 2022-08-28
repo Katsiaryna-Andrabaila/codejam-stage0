@@ -12,6 +12,7 @@ let firstSet = [];
 let secondSet = [];
 let thirdSet = [];
 let finishSet = [];
+let stage = 1;
 
 function setAncients() {
     const ancients = document.querySelectorAll('.ancient'); 
@@ -107,12 +108,6 @@ setVisitedMixButton();
 function getMixedDeck() {
     finishSet = [];
 
-/*     finishSet = getFirstSet().concat(getSecondSet(), getThirdSet());
-    console.log(finishSet);
-    return finishSet; */
-/*     getFirstSet();
-    getSecondSet();
-    getThirdSet(); */
     getNormalGreenSet();
     getNormalBrownSet();
     getNormalBlueSet();
@@ -261,7 +256,6 @@ function getNormalBrownSet() {
 function getNormalBlueSet() {
     const pointers = document.querySelectorAll('.pointer');
     
-
     let sum = Number(pointers[2].innerHTML) + Number(pointers[5].innerHTML) + Number(pointers[8].innerHTML);
 
     let count = 0;
@@ -285,14 +279,61 @@ function showCard() {
 showCard();
 
 function getShownCard() {
+    const shirt = document.querySelector('.shirt');
     const shownCard = document.querySelector('.shown-card');
+    const pointers = document.querySelectorAll('.pointer');
 
-    shownCard.src = finishSet[0].cardFace;
-    finishSet.splice(0, 1);
     console.log(finishSet.length);
 
-    if (finishSet.length === 0) {
-        shownCard.src = "";
+        switch (stage) {
+            case 1:
+                if (finishSet[0].color === "green") {
+                    pointers[0].innerHTML = Number(pointers[0].innerHTML) - 1;
+                } else if (finishSet[0].color === "brown") {
+                    pointers[1].innerHTML = Number(pointers[1].innerHTML) - 1;
+                } else if (finishSet[0].color === "blue") {
+                    pointers[2].innerHTML = Number(pointers[2].innerHTML) - 1;
+                }
+        
+                shownCard.src = finishSet[0].cardFace;
+        
+                if (Number(pointers[0].innerHTML) + Number(pointers[1].innerHTML) + Number(pointers[2].innerHTML) === 0) {
+                    stage++;
+                }
+                break;
+            case 2:
+                if (finishSet[0].color === "green") {
+                    pointers[3].innerHTML = Number(pointers[3].innerHTML) - 1;
+                } else if (finishSet[0].color === "brown") {
+                    pointers[4].innerHTML = Number(pointers[4].innerHTML) - 1;
+                } else if (finishSet[0].color === "blue") {
+                    pointers[5].innerHTML = Number(pointers[5].innerHTML) - 1;
+                }
+        
+                shownCard.src = finishSet[0].cardFace;
+        
+                if (Number(pointers[3].innerHTML) + Number(pointers[4].innerHTML) + Number(pointers[5].innerHTML) === 0) {
+                    stage++;
+                }
+                break;
+            case 3:
+                if (finishSet[0].color === "green") {
+                    pointers[6].innerHTML = Number(pointers[6].innerHTML) - 1;
+                } else if (finishSet[0].color === "brown") {
+                    pointers[7].innerHTML = Number(pointers[7].innerHTML) - 1;
+                } else if (finishSet[0].color === "blue") {
+                    pointers[8].innerHTML = Number(pointers[8].innerHTML) - 1;
+                }
+        
+                shownCard.src = finishSet[0].cardFace;
+        
+                break;
+        }
+    
+    if (finishSet.length === 1) {
+        shirt.classList.add('hidden');
     }
+
+    finishSet.splice(0, 1);  
 }
 
