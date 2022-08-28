@@ -25,6 +25,9 @@ setAncients();
 function getActiveAncient(event) {
     const ancients = document.querySelectorAll('.ancient');
     const difficulty = document.querySelector('.difficulty');
+    const mix = document.querySelector('.mix-cards');
+    const tracker = document.querySelector('.tracker');
+    const deck = document.querySelector('.deck');
 
     ancient = event.target.alt;
 
@@ -33,6 +36,9 @@ function getActiveAncient(event) {
         if (ancients[i].alt === event.target.alt) {
             ancients[i].classList.add('card-active');
             difficulty.classList.add('visible');
+            mix.classList.remove('visible');
+            tracker.classList.remove('visible');
+            deck.classList.remove('visible');
         }
     }
     getAncientSet();
@@ -88,10 +94,17 @@ function mixDeck() {
     const tracker = document.querySelector('.tracker');
     const deck = document.querySelector('.deck');
     const mix = document.querySelector('.mix-cards');
+    const difficulty = document.querySelector('.difficulty');
+    const shownCard = document.querySelector('.shown-card');
+    const shirt = document.querySelector('.shirt');
+    stage = 1;
 
     tracker.classList.add('visible');
     deck.classList.add('visible');
     mix.classList.remove('visible');
+    difficulty.classList.remove('visible');
+    shownCard.src = '';
+    shirt.classList.remove('hidden');
     getMixedDeck();
 }
 
@@ -220,32 +233,41 @@ function getThirdSet() {
 
 function getNormalGreenSet() {
     const pointers = document.querySelectorAll('.pointer');
-    
+    let greenCardsArr = [];
+
+    for (let i = 0; i < greenCards.length; i++) {
+        greenCardsArr.push(greenCards[i]);
+    }
 
     let sum = Number(pointers[0].innerHTML) + Number(pointers[3].innerHTML) + Number(pointers[6].innerHTML);
 
     let count = 0;
     while (count < sum) {
-        let random = getRandomIntInclusive(0, greenCards.length - 1);
-        greenSet.push(greenCards[random]);
-        greenCards.splice(random, 1);
+        let random = getRandomIntInclusive(0, greenCardsArr.length - 1);
+        greenSet.push(greenCardsArr[random]);
+        greenCardsArr.splice(random, 1);
         count++;
     }
 
     console.log(greenSet);
-
+    return greenSet;
 }
 
 function getNormalBrownSet() {
     const pointers = document.querySelectorAll('.pointer');
+    let brownCardsArr = [];
+
+    for (let i = 0; i < brownCards.length; i++) {
+        brownCardsArr.push(brownCards[i]);
+    }
   
     let sum = Number(pointers[1].innerHTML) + Number(pointers[4].innerHTML) + Number(pointers[7].innerHTML);
 
     let count = 0;
     while (count < sum) {
-        let random = getRandomIntInclusive(0, brownCards.length - 1);
-        brownSet.push(brownCards[random]);
-        brownCards.splice(random, 1);
+        let random = getRandomIntInclusive(0, brownCardsArr.length - 1);
+        brownSet.push(brownCardsArr[random]);
+        brownCardsArr.splice(random, 1);
         count++;
     }
 
@@ -255,14 +277,19 @@ function getNormalBrownSet() {
 
 function getNormalBlueSet() {
     const pointers = document.querySelectorAll('.pointer');
+    let blueCardsArr = [];
+
+    for (let i = 0; i < blueCards.length; i++) {
+        blueCardsArr.push(blueCards[i]);
+    }
     
     let sum = Number(pointers[2].innerHTML) + Number(pointers[5].innerHTML) + Number(pointers[8].innerHTML);
 
     let count = 0;
     while (count < sum) {
-        let random = getRandomIntInclusive(0, blueCards.length - 1);
-        blueSet.push(blueCards[random]);
-        blueCards.splice(random, 1);
+        let random = getRandomIntInclusive(0, blueCardsArr.length - 1);
+        blueSet.push(blueCardsArr[random]);
+        blueCardsArr.splice(random, 1);
         count++;
     }
 
@@ -297,7 +324,7 @@ function getShownCard() {
         
                 shownCard.src = finishSet[0].cardFace;
         
-                if (Number(pointers[0].innerHTML) + Number(pointers[1].innerHTML) + Number(pointers[2].innerHTML) === 0) {
+                if (Number(pointers[0].innerHTML) === 0 && Number(pointers[1].innerHTML) === 0 && Number(pointers[2].innerHTML) === 0) {
                     stage++;
                 }
                 break;
@@ -312,7 +339,7 @@ function getShownCard() {
         
                 shownCard.src = finishSet[0].cardFace;
         
-                if (Number(pointers[3].innerHTML) + Number(pointers[4].innerHTML) + Number(pointers[5].innerHTML) === 0) {
+                if (Number(pointers[3].innerHTML) === 0 && Number(pointers[4].innerHTML) === 0 && Number(pointers[5].innerHTML) === 0) {
                     stage++;
                 }
                 break;
@@ -326,6 +353,9 @@ function getShownCard() {
                 }
         
                 shownCard.src = finishSet[0].cardFace;
+                if (Number(pointers[6].innerHTML) === 0 && Number(pointers[7].innerHTML) === 0 && Number(pointers[8].innerHTML) === 0) {
+                    stage = 1;
+                }
         
                 break;
         }

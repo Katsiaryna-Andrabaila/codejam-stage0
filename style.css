@@ -48,6 +48,13 @@ body {
     visibility: visible;
 }
 
+.very-easy,
+.easy,
+.hard,
+.very-hard {
+    visibility: hidden;
+}
+
 .header {
     color: rgb(190, 25, 25);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -169,5 +176,9 @@ button:hover {
 }
 
 .shirt.hidden {
+    visibility: hidden;
+}
+
+.shown-card.hidden {
     visibility: hidden;
 }
